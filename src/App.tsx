@@ -101,22 +101,31 @@ function Game({ onFinish }: GameParams) {
   );
 }
 
+type GameState = "idle" | "playing" | "finished";
 export function App() {
-  const [started, setStarted] = React.useState(true);
+  const [started, setStarted] = React.useState<GameState>("idle");
+  const [outcome, setOutcome] = React.useState<GameOutcome | null>(null);
 
   return (
     <>
       <main>
-        {!started && (
-          <button onClick={() => setStarted(true)}>Start game</button>
+        {started === "idle" && (
+          <button onClick={() => setStarted("playing")}>Start game</button>
         )}
-        {started && (
+        {started === "playing" && (
           <Game
             onFinish={(outcome) => {
-              console.log(outcome);
-              setStarted(false);
+              setStarted("finished");
+              setOutcome(outcome);
             }}
           />
+        )}
+        {started === "finished" && outcome && (
+          <div>
+            <div>{outcome.win ? "You won" : "You lose"}</div>
+            <div>Time: {outcome.time}</div>
+            <div>Score: {outcome.score}</div>
+          </div>
         )}
       </main>
     </>
