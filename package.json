@@ -2,7 +2,6 @@
   "name": "one-to-100",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "source": "src/index.html",
   "scripts": {
     "start": "parcel",
