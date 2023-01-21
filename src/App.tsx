@@ -1,5 +1,8 @@
 import React from "react";
 
+const GOAL = 98;
+const TIME = 240;
+
 function shuffle<T>(arr: T[]): T[] {
   return arr
     .map((value) => ({
@@ -10,8 +13,8 @@ function shuffle<T>(arr: T[]): T[] {
     .map(({ value }) => value);
 }
 
-function generateNumbers() {
-  return shuffle(Array.from({ length: 100 }).map((_, i) => i + 1));
+function generateNumbers(length: number) {
+  return shuffle(Array.from({ length }).map((_, i) => i + 1));
 }
 
 function formatTime(seconds: number) {
@@ -58,8 +61,8 @@ function useTime(initialTime: number) {
 
 function Game({ onFinish }: GameParams) {
   const [score, setScore] = React.useState(0);
-  const [numbers] = React.useState(generateNumbers());
-  const time = useTime(240);
+  const [numbers] = React.useState(generateNumbers(GOAL));
+  const time = useTime(TIME);
 
   React.useEffect(() => {
     if (time <= 0) {
@@ -71,8 +74,8 @@ function Game({ onFinish }: GameParams) {
     if (n === score + 1) {
       setScore(n);
 
-      if (n === 100) {
-        onFinish({ win: true, score: 100, time });
+      if (n === GOAL) {
+        onFinish({ win: true, score: GOAL, time });
       }
     } else {
       onFinish({ win: false, time, score });

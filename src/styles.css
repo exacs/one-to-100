@@ -16,11 +16,7 @@ main ul {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-}
-
-main ul li {
-  height: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
 }
 
 .game {
@@ -45,7 +41,7 @@ main ul li {
 }
 
 .grid button {
-  height: 40px;
+  height: 48px;
   width: 100%;
   border: 1px solid black;
   background: transparent;
