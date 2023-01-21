@@ -14,8 +14,9 @@ function generateNumbers() {
   return shuffle(Array.from({ length: 100 }).map((_, i) => i + 1));
 }
 
-function Game({ numbers }: { numbers: number[] }) {
+function Game() {
   const [latest, setLatest] = React.useState(0);
+  const [numbers] = React.useState(generateNumbers());
 
   function handleClick(n: number) {
     if (n === latest + 1) {
@@ -51,7 +52,7 @@ export function App() {
         {!started && (
           <button onClick={() => setStarted(true)}>Start game</button>
         )}
-        {started && <Game numbers={numbers} />}
+        {started && <Game />}
       </main>
     </>
   );
