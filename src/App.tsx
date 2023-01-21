@@ -53,24 +53,29 @@ function Game({ onFinish }: GameParams) {
   }
 
   return (
-    <ul className="grid">
-      {numbers.map((n) => (
-        <li>
-          <button onClick={() => handleClick(n)} disabled={n <= score}>
-            {n}
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div className="game">
+      <div className="game-score">
+        <div className="score">Score: {score}</div>
+        <div className="time">4:00</div>
+      </div>
+      <ul className="grid">
+        {numbers.map((n) => (
+          <li>
+            <button onClick={() => handleClick(n)} disabled={n <= score}>
+              {n}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
 export function App() {
-  const [started, setStarted] = React.useState(false);
+  const [started, setStarted] = React.useState(true);
 
   return (
     <>
-      <aside>Timer: 4:00</aside>
       <main>
         {!started && (
           <button onClick={() => setStarted(true)}>Start game</button>
