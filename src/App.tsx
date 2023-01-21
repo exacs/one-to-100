@@ -14,17 +14,41 @@ function generateNumbers() {
   return shuffle(Array.from({ length: 100 }).map((_, i) => i + 1));
 }
 
-function Game() {
+interface GameOutcome {
+  /** True if won */
+  win: boolean;
+
+  /**
+   * Number of remaining seconds
+   * - If win===false, is the time when wrong number has clicked
+   * - If win===true, is when clicked the last number
+   */
+  time: number;
+
+  /** Final score */
+  score: number;
+}
+
+interface GameParams {
+  onFinish(GameOutcome);
+}
+
+// Outcome of the game:
+// Win(remaining_time)
+// Lose(score, time)
+function Game({ onFinish }: GameParams) {
   const [latest, setLatest] = React.useState(0);
   const [numbers] = React.useState(generateNumbers());
 
   function handleClick(n: number) {
     if (n === latest + 1) {
-      // Correct
       setLatest(n);
+
+      if (n === 100) {
+        onFinish({ win: true, score: 100, time: 0 });
+      }
     } else {
-      // No correct
-      setLatest(100);
+      onFinish({ win: false, time: 0, score: latest });
     }
   }
 
@@ -43,7 +67,6 @@ function Game() {
 
 export function App() {
   const [started, setStarted] = React.useState(false);
-  const [numbers, setNumbers] = React.useState(generateNumbers());
 
   return (
     <>
@@ -52,7 +75,13 @@ export function App() {
         {!started && (
           <button onClick={() => setStarted(true)}>Start game</button>
         )}
-        {started && <Game />}
+        {started && (
+          <Game
+            onFinish={(outcome) => {
+              console.log(outcome);
+            }}
+          />
+        )}
       </main>
     </>
   );
