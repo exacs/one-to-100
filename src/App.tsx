@@ -1,7 +1,20 @@
 import React from "react";
 
-function Game() {
-  const numbers = Array.from({ length: 100 }).map((_, i) => i + 1);
+function shuffle<T>(arr: T[]): T[] {
+  return arr
+    .map((value) => ({
+      value,
+      order: Math.random(),
+    }))
+    .sort((a, b) => a.order - b.order)
+    .map(({ value }) => value);
+}
+
+function generateNumbers() {
+  return shuffle(Array.from({ length: 100 }).map((_, i) => i + 1));
+}
+
+function Game({ numbers }: { numbers: number[] }) {
   const [latest, setLatest] = React.useState(0);
 
   function handleClick(n: number) {
@@ -29,6 +42,7 @@ function Game() {
 
 export function App() {
   const [started, setStarted] = React.useState(false);
+  const [numbers, setNumbers] = React.useState(generateNumbers());
 
   return (
     <>
@@ -37,7 +51,7 @@ export function App() {
         {!started && (
           <button onClick={() => setStarted(true)}>Start game</button>
         )}
-        {started && <Game />}
+        {started && <Game numbers={numbers} />}
       </main>
     </>
   );
