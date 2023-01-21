@@ -37,18 +37,18 @@ interface GameParams {
 // Win(remaining_time)
 // Lose(score, time)
 function Game({ onFinish }: GameParams) {
-  const [latest, setLatest] = React.useState(0);
+  const [score, setScore] = React.useState(0);
   const [numbers] = React.useState(generateNumbers());
 
   function handleClick(n: number) {
-    if (n === latest + 1) {
-      setLatest(n);
+    if (n === score + 1) {
+      setScore(n);
 
       if (n === 100) {
         onFinish({ win: true, score: 100, time: 0 });
       }
     } else {
-      onFinish({ win: false, time: 0, score: latest });
+      onFinish({ win: false, time: 0, score });
     }
   }
 
@@ -56,7 +56,7 @@ function Game({ onFinish }: GameParams) {
     <ul className="grid">
       {numbers.map((n) => (
         <li>
-          <button onClick={() => handleClick(n)} disabled={n <= latest}>
+          <button onClick={() => handleClick(n)} disabled={n <= score}>
             {n}
           </button>
         </li>
