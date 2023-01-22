@@ -1,6 +1,6 @@
 import React from "react";
 
-const GOAL = 98;
+const GOAL = 100;
 const TIME = 240;
 
 function shuffle<T>(arr: T[]): T[] {
@@ -83,11 +83,11 @@ function Game({ onFinish }: GameParams) {
   }
 
   return (
-    <div className="game">
-      <div className="game-score">
+    <>
+      <header className="game-score">
         <div className="score">Score: {score}</div>
         <div className="time">{formatTime(time)}</div>
-      </div>
+      </header>
       <ul className="grid">
         {numbers.map((n) => (
           <li>
@@ -97,20 +97,7 @@ function Game({ onFinish }: GameParams) {
           </li>
         ))}
       </ul>
-    </div>
-  );
-}
-
-function Grid() {
-  const numbers = generateNumbers(100);
-  return (
-    <ul className="grid">
-      {numbers.map((n) => (
-        <li>
-          <button>{n}</button>
-        </li>
-      ))}
-    </ul>
+    </>
   );
 }
 
@@ -126,13 +113,13 @@ export function App() {
           <header className="game-title">1 to 100</header>
           <main className="instructions">
             <p>
-              The aim of the game is to click the buttons from 1 to 100 in
-              ascending order. You have 4 minutes
+              Click the numbers from 1 to 100 in ascending order. You have 4
+              minutes.
             </p>
             <p>If you click a wrong number, game is over</p>
           </main>
           <footer className="start-game">
-            <button>Start game</button>
+            <button onClick={() => setStarted("playing")}>Start game</button>
           </footer>
         </>
       )}
@@ -145,11 +132,18 @@ export function App() {
         />
       )}
       {started === "finished" && outcome && (
-        <div>
-          <div>{outcome.win ? "You won" : "You lose"}</div>
-          <div>Time: {outcome.time}</div>
-          <div>Score: {outcome.score}</div>
-        </div>
+        <>
+          <header className="game-result-title">
+            {outcome.win ? "You won" : "You lose"}
+          </header>
+          <main className="ig">
+            <div className="time">Time: {outcome.time}</div>
+            <div className="score">Score: {outcome.score}</div>
+          </main>
+          <footer className="retry">
+            <button onClick={() => setStarted("idle")}>Retry</button>
+          </footer>
+        </>
       )}
     </>
   );
