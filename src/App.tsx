@@ -101,6 +101,19 @@ function Game({ onFinish }: GameParams) {
   );
 }
 
+function Grid() {
+  const numbers = generateNumbers(100);
+  return (
+    <ul className="grid">
+      {numbers.map((n) => (
+        <li>
+          <button>{n}</button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 type GameState = "idle" | "playing" | "finished";
 export function App() {
   const [started, setStarted] = React.useState<GameState>("idle");
@@ -108,7 +121,21 @@ export function App() {
 
   return (
     <>
-      {started === "idle" && <div className="x">X</div>}
+      {started === "idle" && (
+        <>
+          <header className="game-title">1 to 100</header>
+          <main className="instructions">
+            <p>
+              The aim of the game is to click the buttons from 1 to 100 in
+              ascending order. You have 4 minutes
+            </p>
+            <p>If you click a wrong number, game is over</p>
+          </main>
+          <footer className="start-game">
+            <button>Start game</button>
+          </footer>
+        </>
+      )}
       {started === "playing" && (
         <Game
           onFinish={(outcome) => {
