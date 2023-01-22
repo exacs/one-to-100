@@ -108,26 +108,22 @@ export function App() {
 
   return (
     <>
-      <main>
-        {started === "idle" && (
-          <button onClick={() => setStarted("playing")}>Start game</button>
-        )}
-        {started === "playing" && (
-          <Game
-            onFinish={(outcome) => {
-              setStarted("finished");
-              setOutcome(outcome);
-            }}
-          />
-        )}
-        {started === "finished" && outcome && (
-          <div>
-            <div>{outcome.win ? "You won" : "You lose"}</div>
-            <div>Time: {outcome.time}</div>
-            <div>Score: {outcome.score}</div>
-          </div>
-        )}
-      </main>
+      {started === "idle" && <div className="x">X</div>}
+      {started === "playing" && (
+        <Game
+          onFinish={(outcome) => {
+            setStarted("finished");
+            setOutcome(outcome);
+          }}
+        />
+      )}
+      {started === "finished" && outcome && (
+        <div>
+          <div>{outcome.win ? "You won" : "You lose"}</div>
+          <div>Time: {outcome.time}</div>
+          <div>Score: {outcome.score}</div>
+        </div>
+      )}
     </>
   );
 }
