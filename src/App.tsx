@@ -83,11 +83,9 @@ function Game({ onFinish }: GameParams) {
   }
 
   return (
-    <>
-      <header className="game-score">
-        <div className="score">Score: {score}</div>
-        <div className="time">{formatTime(time)}</div>
-      </header>
+    <div className="game">
+      <div className="time">{formatTime(time)}</div>
+      <div className="next">Next: {score + 1}</div>
       <ul className="grid">
         {numbers.map((n) => (
           <li>
@@ -97,7 +95,7 @@ function Game({ onFinish }: GameParams) {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
 
