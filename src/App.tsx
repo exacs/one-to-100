@@ -130,18 +130,33 @@ export function App() {
         />
       )}
       {started === "finished" && outcome && (
-        <>
-          <header className="game-result-title">
-            {outcome.win ? "You won" : "You lose"}
-          </header>
-          <main className="ig">
-            <div className="time">Time: {outcome.time}</div>
-            <div className="score">Score: {outcome.score}</div>
-          </main>
-          <footer className="retry">
-            <button onClick={() => setStarted("idle")}>Retry</button>
-          </footer>
-        </>
+        <main className="results">
+          {outcome.win && <h1>You win</h1>}
+          {!outcome.win && (
+            <>
+              <h1>You lose</h1>
+              <p>
+                {outcome.time > 0
+                  ? "You clicked the wrong number"
+                  : "Time is up"}
+              </p>
+            </>
+          )}
+
+          <section className="scores">
+            <div className="score">
+              <h2>Score</h2>
+              <div>{outcome.score}</div>
+            </div>
+            <div className="score">
+              <h2>Time</h2>
+              <div>{formatTime(outcome.time)}</div>
+            </div>
+          </section>
+          <button className="start" onClick={() => setStarted("idle")}>
+            Retry
+          </button>
+        </main>
       )}
     </>
   );
