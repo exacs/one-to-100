@@ -12,6 +12,10 @@ body {
   font-size: 16px;
 }
 
+button {
+  font-size: 1rem;
+}
+
 #root {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -26,8 +30,8 @@ body {
   /* Grid */
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(16, 1fr);
-  gap: 8px;
+  grid-template-rows: repeat(15, 1fr);
+  gap: 4px;
   padding: 16px 32px;
 }
 
@@ -42,7 +46,7 @@ header.game-title {
 
 main.instructions {
   grid-column: 1 / 8;
-  grid-row: 2 / 16;
+  grid-row: 2 / 15;
   border-radius: 16px;
   background: thistle;
   padding: 8px;
@@ -50,7 +54,7 @@ main.instructions {
 
 footer.start-game {
   grid-column: 1 / 8;
-  grid-row: 16 / 17;
+  grid-row: 15 / 16;
 }
 
 footer.start-game button {
@@ -70,16 +74,16 @@ header.game-score {
 }
 
 header.game-score .score {
-  grid-row: 1 / 2;
-  grid-column: 1 / 5;
+  grid-row: 8 / 9;
+  grid-column: 2 / 5;
   border-radius: 16px;
   background: thistle;
   padding: 8px 0;
 }
 
 header.game-score .time {
-  grid-row: 1 / 2;
-  grid-column: 5 / 8;
+  grid-row: 8 / 9;
+  grid-column: 5 / 7;
   border-radius: 16px;
   background: thistle;
   padding: 8px 0;
@@ -143,7 +147,7 @@ header.game-score .time {
 }
 
 .retry {
-  grid-row: 16/17;
+  grid-row: 15/16;
   grid-column: 1/8;
 }
 
