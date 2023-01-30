@@ -108,17 +108,17 @@ export function App() {
     <>
       {started === "idle" && (
         <>
-          <header className="game-title">1 to 100</header>
+          <h1>1 to 100</h1>
           <main className="instructions">
             <p>
               Click the numbers from 1 to 100 in ascending order. You have 4
               minutes.
             </p>
             <p>If you click a wrong number, game is over</p>
+            <button className="start" onClick={() => setStarted("playing")}>
+              Start game
+            </button>
           </main>
-          <footer className="start-game">
-            <button onClick={() => setStarted("playing")}>Start game</button>
-          </footer>
         </>
       )}
       {started === "playing" && (

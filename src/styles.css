@@ -87,36 +87,27 @@ button {
   background: green;
 }
 
-header.game-title {
-  grid-column: 1 / 8;
-  grid-row: 1 / 2;
-  background: thistle;
-  border-radius: 16px;
+/* Start */
+h1 {
   text-align: center;
-  padding: 8px 0;
 }
 
 main.instructions {
-  grid-column: 1 / 8;
-  grid-row: 2 / 15;
-  border-radius: 16px;
-  background: thistle;
-  padding: 8px;
+  line-height: 1.5rem;
+  text-align: center;
+  max-width: 20rem;
 }
 
-footer.start-game {
-  grid-column: 1 / 8;
-  grid-row: 15 / 16;
-}
-
-footer.start-game button {
-  width: 100%;
-  height: 100%;
-  border-radius: 16px;
+button.start {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+  height: 2.5rem;
+  padding: 0 1.5rem;
+  border-radius: 1.25rem;
+  background: black;
   border: none;
-  background: green;
   color: white;
-  font-weight: bold;
 }
 
 .game-result-title {
