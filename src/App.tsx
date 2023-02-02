@@ -89,9 +89,19 @@ function Game({ onFinish }: GameParams) {
       <ul className="grid">
         {numbers.map((n) => (
           <li>
-            <button onClick={() => handleClick(n)} disabled={n <= score}>
+            <button
+              className="content"
+              onClick={() => handleClick(n)}
+              disabled={n <= score}
+            >
               {n}
             </button>
+            {n === score + 1 && (
+              <button
+                className="next-button"
+                onClick={() => handleClick(score + 1)}
+              ></button>
+            )}
           </li>
         ))}
       </ul>

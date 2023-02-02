@@ -5,6 +5,10 @@
 
   --tile-padding: 0.25rem;
   --game-margin: 1rem;
+
+  --click-area-extra: 0.75rem;
+  --click-area-width: calc(var(--tile-width) + 2 * var(--click-area-extra));
+  --click-area-height: calc(var(--tile-height) + 2 * var(--click-area-extra));
 }
 
 * {
@@ -72,9 +76,10 @@ button {
 .grid li {
   justify-self: stretch;
   align-self: stretch;
+  position: relative;
 }
 
-.grid button {
+.grid .content {
   padding-top: var(--tile-padding);
   padding-bottom: var(--tile-padding);
   width: 100%;
@@ -83,8 +88,19 @@ button {
   background: white;
 }
 
-.grid button:disabled {
+.grid .content:disabled {
   background: green;
+}
+
+.next-button {
+  z-index: 100;
+  position: absolute;
+  top: calc(var(--click-area-extra) / -1);
+  left: calc(var(--click-area-extra) / -1);
+  width: var(--click-area-width);
+  height: var(--click-area-height);
+  border: none;
+  background: transparent;
 }
 
 /* Start */
